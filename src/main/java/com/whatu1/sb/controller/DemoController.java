@@ -20,7 +20,7 @@ public class DemoController {
 	protected DemoService demoService;
 
 	@GetMapping("/demo")
-	public List<Demo> helloworld() {
+	public List<Demo> getDemos() {
 		log.info("測試Controller");
 		return demoService.getDemos();
 	}
