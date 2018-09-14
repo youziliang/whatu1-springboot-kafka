@@ -1,0 +1,63 @@
+server:
+ port: 8080
+
+spring:
+ datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  url: jdbc:mysql://127.0.0.1:3306/sb?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useCompression=true&useSSL=false
+  username: root
+  password: youziliang
+  #配置监控统计拦截的过滤器
+  filters: stat,wall,log4j
+  #最大活跃数
+  maxActive: 20
+  #初始化数量
+  initialSize: 1
+  #最大连接等待超时时间
+  maxWait: 60000
+  #打开PSCache，并且制定每个连接缓存的大小
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  #通过connectionProperties属性来打开mergeSql功能;慢SQL记录
+  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  #最小闲置线程
+  minIdle: 1
+  #多久运行一次空闲连接回收器
+  timeBetweenEvictionRunsMillis: 60000
+  #连接保持空闲而不被释放的最长时间
+  minEvictableIdleTimeMillis: 300000
+  #用来验证数据库连接的查询语句，每个数据库不一样
+  validationQuery: select 1
+  #在空闲试验
+  testWhileIdle: true
+  #生产环境不开启，影响性能
+  testOnBorrow: false
+  #生产环境不开启，影响性能
+  testOnReturn: false
+
+ jpa:
+  database: MySQL
+  show_sql: true
+  format_sql: true
+  hibernate:
+   naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+   
+kafka:
+ topic.demo: demo-topic
+ 
+ consumer.zookeeper.connect: http://www.whatu1.com:2181
+ #集群用逗号隔开
+ consumer.servers: http://www.whatu1.com:9092
+ consumer.enable.auto.commit: true
+ consumer.session.timeout: 6000
+ consumer.auto.commit.interval: 100
+ consumer.auto.offset.reset: latest
+ consumer.group.id: demo-group
+ consumer.topic: demo-topic
+ consumer.concurrency: 10
+ #集群用逗号隔开
+ producer.servers: http://www.whatu1.com:9092
+ producer.retries: 0
+ producer.batch.size: 4096
+ producer.linger: 1
+ producer.buffer.memory: 40960

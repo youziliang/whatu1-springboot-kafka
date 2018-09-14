@@ -1,0 +1,4 @@
+## dev mapping application-dev , test mapping application-test , prod mapping application-prod
+spring:
+ profiles:
+  active: dev
